@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>All Courses Available</title>
+</head>
+<body>
+<form>
+<table>
+	<tr th:each="currentCourse: ${courses}">
+		<td th:text="${currentContact.courseId}" />
+		<td th:text="${currentContact.courseName}" />
+		<td th:text="${currentContact.courseSubject}" />
+	</tr>
+</table>
+</form>
+<a href="../index">Return To Home Page</a>
+</body>
+</html>
