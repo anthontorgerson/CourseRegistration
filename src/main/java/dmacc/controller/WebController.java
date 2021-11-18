@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import dmacc.beans.Contact;
 import dmacc.beans.Course;
+import dmacc.beans.Movie;
 import dmacc.repository.CourseRegistrationRepository;
 
 @Controller
@@ -51,4 +52,21 @@ public class WebController {
 		//TODO: viewAllCourses method will need to be created
 		return viewAllContacts(model);
 	}//end addNewCourse
+	
+	// add student to course method
+	@GetMapping("/inputStudentToCourse")
+	public String addStudentToCourse(Model model) {
+		Student s = new Student(); //TODO: student class needs added
+		Course c = new Course();
+		model.addAttribute("newStudent", s);
+		model.addAttribute("newCourse", c);
+		return "input";
+	}
+	
+	@PostMapping("/inputStudentToCourse")
+	public String addStudentToCourse(@ModelAttribute Student s, Course c, Model model) {
+		repo.save(s);
+		repo.save(c);
+		return viewAllCourses(model); //TODO: viewAllCourses method needs added
+	}
 }//end WebController
