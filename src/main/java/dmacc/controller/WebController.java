@@ -51,4 +51,17 @@ public class WebController {
 		//TODO: viewAllCourses method will need to be created
 		return viewAllContacts(model);
 	}//end addNewCourse
+	
+	//add duplicate method
+	@GetMapping("/inputCourse")
+	public String addDuplicateCourse(@PathVariable("id") long id, Model model) {
+		Course c = new Course();
+		Course toBeCopied = repo.findById(id).orElse(null);
+		c.setCourseId(toBeCopied.getCourseId());
+		c.setCourseName(toBeCopied.getCourseName());
+		c.setTeacher(toBeCopied.getTeacher());
+		return "input";
+		
+	}
+	
 }//end WebController
