@@ -11,14 +11,17 @@ import javax.persistence.Embeddable;
 public class Teacher {
 	private String lastName;
 	private String email;
-	private int id;
+	//private int teacherID; // changed from id, was causing duplication errors with course.id
 	
 	public Teacher() {
-		// spaceholder
+		super();
 	}
 
-	public Teacher(String lastName, String email, int id) {
-		// spaceholder
+	public Teacher(String lastName, String email) {
+		super();
+		this.lastName = lastName;
+		this.email = email;
+		//this.teacherID = teacherID;
 	}
 
 	// getters and setters
@@ -37,12 +40,17 @@ public class Teacher {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-
-	public int getId() {
-		return id;
+/*
+	public int getteacherID() {
+		return teacherID;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public void setteacherID(int teacherID) {
+		this.teacherID = teacherID;
+	}
+*/
+	@Override
+	public String toString() {
+		return "Teacher [lastName=" + lastName + ", email=" + email + "]";
 	}
 }
