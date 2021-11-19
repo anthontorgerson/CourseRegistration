@@ -55,7 +55,7 @@ tr:nth-child(odd) {
 		<option value="5">Email</option>
 	</select>
 	<input type="text" id="searchInput" onkeyup="selectedSearch()" placeholder="Search">
-	<form>
+	<form action="@{/delete/{id}(id=${currentCourses.id})}" method="get">
 		<table id="adminTable">
 			<tr>
 				<th>ID</th>
@@ -75,8 +75,9 @@ tr:nth-child(odd) {
 				
 				<!--  <td><button class="button buttonEdit" th:href="@{/edit/{id}(id=${currentCourses.id})}">Edit</button></td><!-- Stylized button, needs work -->
 				<td><a th:href="@{/edit/{id}(id=${currentCourses.id})}">Edit</a></td><!-- WORKS redirects to /delete/id# -->
-				 <td><button class="button buttonDelete" th:action="@{/delete/{id}(id=${currentCourses.id})}">Delete</button></td><!-- Stylized button, needs work -->			
-              <!--   <td><a th:href="@{/delete/{id}(id=${currentCourses.id})}">Delete</a></td><!-- WORKS redirects to /delete/id# -->
+				 <!--<td><button class="button buttonDelete" th:action="@{/delete/{id}(id=${currentCourses.id})}">Delete1</button></td><!-- Stylized button, needs work -->			
+              	<td><a th:href="@{/delete/{id}(id=${currentCourses.id})}">Delete</a></td><!-- WORKS redirects to /delete/id# -->
+              
 
 			</tr>
 			
