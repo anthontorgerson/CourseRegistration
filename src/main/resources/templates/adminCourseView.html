@@ -61,70 +61,28 @@ tr:nth-child(odd) {
 				<th>ID</th>
 				<th>CRN</th>
 				<th>Course Title</th>
-				<th>Students Enrolled</th>
+				<!-- <th>Students Enrolled</th> -->
 				<th>Teacher</th>
 				<th>Email</th>
 			</tr>
-			<tr th:each="currentCourses, rowStat : ${TABLENAME}"> <!-- Replace TABLENAME with database table name of course list -->
+			<tr th:each="currentCourses, rowStat : ${courses}"> 
 				<td th:text="${currentCourses.id}" />
 				<td th:text="${currentCourses.courseId}" />
 				<td th:text="${currentCourses.courseName}" />
-				<td th:text="${currentCourses.courseApplied}" />
+				<!--   <td th:text="${currentCourses.courseApplied}" />-->
 				<td th:text="${currentCourses.teacher.lastName}" />
 				<td th:text="${currentCourses.teacher.email}" />
-				<td><button class="button buttonEdit" th:href="@{/edit/{id}(id=${currentCourses.id})}">Edit</button></td> <!-- edit still needs to be added to webcontroller -->
-				<td><button class="button buttonDelete" th:href="@{/delete/{id}(id=${currentCourses.id})}">Delete</button></td>
+				
+				<!--  <td><button class="button buttonEdit" th:href="@{/edit/{id}(id=${currentCourses.id})}">Edit</button></td><!-- Stylized button, needs work -->
+				<td><a th:href="@{/edit/{id}(id=${currentCourses.id})}">Edit</a></td><!-- WORKS redirects to /delete/id# -->
+				 <td><button class="button buttonDelete" th:action="@{/delete/{id}(id=${currentCourses.id})}">Delete</button></td><!-- Stylized button, needs work -->			
+              <!--   <td><a th:href="@{/delete/{id}(id=${currentCourses.id})}">Delete</a></td><!-- WORKS redirects to /delete/id# -->
+
 			</tr>
-			<!-- ALL OF <TBODY> CAN BE DELETED ONCE DATABASE IS POPULATED. JUST HERE FOR DEMO PURPOSES -->
-			<tbody>
-				<tr>
-					<td class="tableContents">1</td>
-					<td class="tableContents">12345</td>
-					<td class="tableContents">Python</td>
-					<td class="tableContents">12</td>
-					<td class="tableContents">Smith</td>
-					<td class="tableContents">tsmith@dmacc.edu</td>
-					<td><button class="button buttonEdit" th:href="@{/edit/{id}(id=${currentCourses.id})}">Edit</button></td>
-					<!-- edit still needs to be added to webcontroller -->
-					<td><button class="button buttonDelete" th:href="@{/delete/{id}(id=${currentCourses.id})}">Delete</button></td>
-				</tr>
-				<tr>
-					<td class="tableContents">2</td>
-					<td class="tableContents">54321</td>
-					<td class="tableContents">Java</td>
-					<td class="tableContents">10</td>
-					<td class="tableContents">Jones</td>
-					<td class="tableContents">jjones@dmacc.edu</td>
-					<td><button class="button buttonEdit" th:href="@{/edit/{id}(id=${currentCourses.id})}">Edit</button></td>
-					<!-- edit still needs to be added to webcontroller -->
-					<td><button class="button buttonDelete" th:href="@{/delete/{id}(id=${currentCourses.id})}">Delete</button></td>
-				</tr>
-				<tr>
-					<td class="tableContents">3</td>
-					<td class="tableContents">67890</td>
-					<td class="tableContents">C#</td>
-					<td class="tableContents">7</td>
-					<td class="tableContents">Miller</td>
-					<td class="tableContents">kmiller@dmacc.edu</td>
-					<td><button class="button buttonEdit" th:href="@{/edit/{id}(id=${currentCourses.id})}">Edit</button></td>
-					<!-- edit still needs to be added to webcontroller -->
-					<td><button class="button buttonDelete" th:href="@{/delete/{id}(id=${currentCourses.id})}">Delete</button></td>
-				</tr>
-				<tr>
-					<td class="tableContents">4</td>
-					<td class="tableContents">09876</td>
-					<td class="tableContents">C++</td>
-					<td class="tableContents">14</td>
-					<td class="tableContents">Davis</td>
-					<td class="tableContents">adavis@dmacc.edu</td>
-					<td><button class="button buttonEdit" th:href="@{/edit/{id}(id=${currentCourses.id})}">Edit</button></td> <!-- edit still needs to be added to webcontroller -->
-					<td><button class="button buttonDelete" th:href="@{/delete/{id}(id=${currentCourses.id})}">Delete</button></td>
-				</tr>
-			</tbody>
-			<!-- ALL OF <TBODY> CAN BE DELETED ONCE DATABASE IS POPULATED. JUST HERE FOR DEMO PURPOSES -->
+			
 		</table>
 	</form>
-	<button class="button buttonAdd" href="LINKHERE">Add</button> <!-- Replace LINKHERE with link to add courses -->
+	<button class="button buttonAdd" onclick="window.location.href='/inputCourse';">Add</button>
 
 	<script>
 

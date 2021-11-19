@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert New or Edit Course</title>
+</head>
+<body>
+	<form th:object="${newCourse}" th:action="@{/update/{id}(id=${newCourse.id})}" method=POST>
+		CRN: <input name="courseId" size="20" th:field="*{courseId}">
+		<br />
+		Course Title: <input name="courseName" size="20" th:field="*{courseName}">
+		<br /> 
+		Teacher: <input name="teacher.lastName" size="20" th:field="*{teacher.lastName}">
+		<br />  
+		Email: <input name="teacher.email" size="20" th:field="*{teacher.email}">
+		<br /> 
+		<input name="Submit" type="submit" value="submit" />
+	</form>
+	<a href="../viewAll">View All Courses</a>
+</body>
+</html>
