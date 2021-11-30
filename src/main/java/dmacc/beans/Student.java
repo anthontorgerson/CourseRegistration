@@ -24,7 +24,8 @@ public class Student {
 	private long id;
 	private String firstName;
 	private String lastName;
-	private List<Course> courses;
+	//Error Could not determine type for: java.util.List, at table: student, for columns: [org.hibernate.mapping.Column(courses)]
+	//private List<Course> courses;
 	
 	public Student(long id, String firstName, String lastName) {
 		this.id = id;

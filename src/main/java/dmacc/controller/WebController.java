@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import dmacc.beans.Contact;
 import dmacc.beans.Course;
 import dmacc.beans.Movie;
 import dmacc.repository.CourseRegistrationRepository;
@@ -24,6 +23,27 @@ public class WebController {
 	@Autowired
 	CourseRegistrationRepository repo;
 	
+	@GetMapping({"/", "viewAll"})
+	public String viewAllCourses(Model model) {
+		if(repo.findAll().isEmpty()) {
+			return addNewCourse(model);
+		}
+		model.addAttribute("courses", repo.findAll());
+		return "adminCourseView";
+	}
+
+	@GetMapping("/edit/{id}")
+	public String showUpdateCourse(@PathVariable("id") long id, Model model) {
+		Course c = repo.findById(id).orElse(null);
+		model.addAttribute("newCourse", c);
+		return "input";
+	}
+
+	@PostMapping("/update/{id}")
+	public String reviseContact(Course c, Model model) {
+		repo.save(c);
+		return viewAllCourses(model);
+	}
 	//delete function
 	@GetMapping("/delete/{id}")
 	
@@ -50,7 +70,7 @@ public class WebController {
 	public String addNewCourse(@ModelAttribute Course c, Model model) {
 		repo.save(c);
 		//TODO: viewAllCourses method will need to be created
-		return viewAllContacts(model);
+		return viewAllCourses(model);
 	}//end addNewCourse
 	
 	// add student to course method
@@ -69,4 +89,19 @@ public class WebController {
 		repo.save(c);
 		return viewAllCourses(model); //TODO: viewAllCourses method needs added
 	}
+	
+	/*
+	//add duplicate method
+	@GetMapping("/inputCourse")
+	public String addDuplicateCourse(@PathVariable("id") long id, Model model) {
+		Course c = new Course();
+		Course toBeCopied = repo.findById(id).orElse(null);
+		c.setCourseId(toBeCopied.getCourseId());
+		c.setCourseName(toBeCopied.getCourseName());
+		c.setTeacher(toBeCopied.getTeacher());
+		return "input";
+		
+	}
+	*/
+	
 }//end WebController
