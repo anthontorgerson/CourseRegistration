@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>View Available Courses</title>
+</head>
+<body>
+	<select id="subject">
+		<option value="" disabled selected>Select Search Parameter</option>
+		<option value="0">ID</option>
+		<option value="1">CRN</option>
+		<option value="2">Course Title</option>
+		<option value="3">Enrolled</option>
+		<option value="4">Teacher</option>
+		<option value="5">Email</option>
+	</select>
+	<input type="text" id="searchInput" onkeyup="selectedSearch()"
+		placeholder="Search">
+		
+	<table id="studentViewTable">
+		<tr>
+			<th>ID</th>
+			<th>CRN</th>
+			<th>Course Title</th>
+			<th>Teacher</th>
+			<th>Email</th>
+		</tr>
+		<tr th:each="currentCourses, rowStat : ${courses}"> 
+			<td th:text="${currentCourses.id}" />
+			<td th:text="${currentCourses.courseId}" />
+			<td th:text="${currentCourses.courseName}" />
+			<td th:text="${currentCourses.teacher.lastName}" />
+			<td th:text="${currentCourses.teacher.email}" />
+		</tr>
+	</table>
+	
+	<a href="../index.html">Return to Home</a>
+	
+	<script>
+		var menu = document.getElementById("subject");
+		menu.addEventListener("change", selectedSearch);
+
+		function selectedSearch(event) {
+			if (menu.value == '0') {
+				var input, filter, table, tr, td, i, txtValue;
+				input = document.getElementById("searchInput");
+				filter = input.value.toUpperCase();
+				table = document.getElementById("studentViewTable");
+				tr = table.getElementsByTagName("tr");
+				for (i = 0; i < tr.length; i++) {
+					td = tr[i].getElementsByTagName("td")[0];
+					if (td) {
+						txtValue = td.textContent || td.innerText;
+						if (txtValue.toUpperCase().indexOf(filter) > -1) {
+							tr[i].style.display = "";
+						} else {
+							tr[i].style.display = "none";
+						}
+					}
+				}
+			} else if (menu.value == '1') {
+				var input, filter, table, tr, td, i, txtValue;
+				input = document.getElementById("searchInput");
+				filter = input.value.toUpperCase();
+				table = document.getElementById("studentViewTable");
+				tr = table.getElementsByTagName("tr");
+				for (i = 0; i < tr.length; i++) {
+					td = tr[i].getElementsByTagName("td")[1];
+					if (td) {
+						txtValue = td.textContent || td.innerText;
+						if (txtValue.toUpperCase().indexOf(filter) > -1) {
+							tr[i].style.display = "";
+						} else {
+							tr[i].style.display = "none";
+						}
+					}
+				}
+			} else if (menu.value == '2') {
+				var input, filter, table, tr, td, i, txtValue;
+				input = document.getElementById("searchInput");
+				filter = input.value.toUpperCase();
+				table = document.getElementById("studentViewTable");
+				tr = table.getElementsByTagName("tr");
+				for (i = 0; i < tr.length; i++) {
+					td = tr[i].getElementsByTagName("td")[2];
+					if (td) {
+						txtValue = td.textContent || td.innerText;
+						if (txtValue.toUpperCase().indexOf(filter) > -1) {
+							tr[i].style.display = "";
+						} else {
+							tr[i].style.display = "none";
+						}
+					}
+				}
+			} else if (menu.value == '3') {
+				var input, filter, table, tr, td, i, txtValue;
+				input = document.getElementById("searchInput");
+				filter = input.value.toUpperCase();
+				table = document.getElementById("studentViewTable");
+				tr = table.getElementsByTagName("tr");
+				for (i = 0; i < tr.length; i++) {
+					td = tr[i].getElementsByTagName("td")[3];
+					if (td) {
+						txtValue = td.textContent || td.innerText;
+						if (txtValue.toUpperCase().indexOf(filter) > -1) {
+							tr[i].style.display = "";
+						} else {
+							tr[i].style.display = "none";
+						}
+					}
+				}
+			} else if (menu.value == '4') {
+				var input, filter, table, tr, td, i, txtValue;
+				input = document.getElementById("searchInput");
+				filter = input.value.toUpperCase();
+				table = document.getElementById("studentViewTable");
+				tr = table.getElementsByTagName("tr");
+				for (i = 0; i < tr.length; i++) {
+					td = tr[i].getElementsByTagName("td")[4];
+					if (td) {
+						txtValue = td.textContent || td.innerText;
+						if (txtValue.toUpperCase().indexOf(filter) > -1) {
+							tr[i].style.display = "";
+						} else {
+							tr[i].style.display = "none";
+						}
+					}
+				}
+			} else if (menu.value == '5') {
+				var input, filter, table, tr, td, i, txtValue;
+				input = document.getElementById("searchInput");
+				filter = input.value.toUpperCase();
+				table = document.getElementById("studentViewTable");
+				tr = table.getElementsByTagName("tr");
+				for (i = 0; i < tr.length; i++) {
+					td = tr[i].getElementsByTagName("td")[5];
+					if (td) {
+						txtValue = td.textContent || td.innerText;
+						if (txtValue.toUpperCase().indexOf(filter) > -1) {
+							tr[i].style.display = "";
+						} else {
+							tr[i].style.display = "none";
+						}
+					}
+				}
+			} else if (menu.value == '6') {
+				var input, filter, table, tr, td, i, txtValue;
+				input = document.getElementById("searchInput");
+				filter = input.value.toUpperCase();
+				table = document.getElementById("studentViewTable");
+				tr = table.getElementsByTagName("tr");
+				for (i = 0; i < tr.length; i++) {
+					td = tr[i].getElementsByTagName("td")[6];
+					if (td) {
+						txtValue = td.textContent || td.innerText;
+						if (txtValue.toUpperCase().indexOf(filter) > -1) {
+							tr[i].style.display = "";
+						} else {
+							tr[i].style.display = "none";
+						}
+					}
+				}
+			}
+		}
+	</script>
+
+</body>
+</html>
