@@ -5,7 +5,10 @@
 <title>View All Courses - Administrator</title>
 </head>
 <style>
+
+
 th {
+	cursor: pointer;
 	background-color: #87CEEB;
 	color: black;
 	font-weight: bold;
@@ -19,30 +22,55 @@ tr:nth-child(odd) {
 	background-color: #f2f2f2;
 }
 
-.buttonAdd {
-	background-color: lightgreen;
-	border-radius: 6px;
-	border-color: black;
-	font-weight: bold;
-}
-
-.buttonEdit {
-	background-color: yellow;
-	border-radius: 6px;
-	border-color: black;
-	font-weight: bold;
-}
-
-.buttonDelete {
-	background-color: red;
-	border-radius: 6px;
-	border-color: black;
-	font-weight: bold;
-}
-
 .tableContents {
 	text-align: left;
 }
+
+a.addButton{
+    -webkit-appearance: button;
+    -moz-appearance: button;
+    appearance: button;
+    text-decoration: none;
+   background: green;
+   padding: 3px 7px;
+   border-radius: 20px;
+   color: white;
+   font-size: 12px;
+   font-family: Helvetica, Arial, Sans-Serif;
+   vertical-align: middle;
+}
+
+a.editButton{
+    -webkit-appearance: button;
+    -moz-appearance: button;
+    appearance: button;
+    text-decoration: none;
+   background: khaki;
+   padding: 3px 7px;
+   border-radius: 20px;
+   color: white;
+   font-size: 12px;
+   font-family: Helvetica, Arial, Sans-Serif;
+   vertical-align: middle;
+}
+
+a.deleteButton{
+    -webkit-appearance: button;
+    -moz-appearance: button;
+    appearance: button;
+    text-decoration: none;
+   background: red;
+   padding: 3px 7px;
+   border-radius: 20px;
+   color: white;
+   font-size: 12px;
+   font-family: Helvetica, Arial, Sans-Serif;
+   vertical-align: middle;
+}
+
+
+
+
 </style>
 <body>
 	<select id="subject">
@@ -55,39 +83,57 @@ tr:nth-child(odd) {
 		<option value="5">Email</option>
 	</select>
 	<input type="text" id="searchInput" onkeyup="selectedSearch()" placeholder="Search">
-	<form action="@{/delete/{id}(id=${currentCourses.id})}" method="get">
-		<table id="adminTable">
+	<form>
+		<table class="table" id="adminTable">
+		<thead>
 			<tr>
 				<th>ID</th>
 				<th>CRN</th>
 				<th>Course Title</th>
 				<th>Students Enrolled</th>
-				<!-- <th>Students Enrolled</th> -->
 				<th>Teacher</th>
 				<th>Email</th>
 			</tr>
+			</thead>
+			<tbody>
 			<tr th:each="currentCourses, rowStat : ${courses}"> 
 				<td th:text="${currentCourses.id}" />
 				<td th:text="${currentCourses.courseId}" />
 				<td th:text="${currentCourses.courseName}" />
-				<td th:text="${currentCourses.studentsEnrolled}" />
-				<!--   <td th:text="${currentCourses.courseApplied}" />-->
+				<td th:text="${currentCourses.studentsEnrolled}" />			
 				<td th:text="${currentCourses.teacher.lastName}" />
 				<td th:text="${currentCourses.teacher.email}" />
 				
-				<!--  <td><button class="button buttonEdit" th:href="@{/edit/{id}(id=${currentCourses.id})}">Edit</button></td><!-- Stylized button, needs work -->
-				<td><a th:href="@{/edit/{id}(id=${currentCourses.id})}">Edit</a></td><!-- WORKS redirects to /edit/id# -->
-				 <!--<td><button class="button buttonDelete" th:action="@{/delete/{id}(id=${currentCourses.id})}">Delete</button></td><!-- Stylized button, needs work -->			
-              	<td><a th:href="@{/delete/{id}(id=${currentCourses.id})}">Delete</a></td><!-- WORKS redirects to /delete/id# -->
+				<td><a th:href="@{/edit/{id}(id=${currentCourses.id})}" class = "editButton">Edit</a></td>					
+              	<td><a th:href="@{/delete/{id}(id=${currentCourses.id})}" class = "deleteButton">Delete</a></td>
               	<td><a th:href="@{/remove/{id}(id=${currentCourses.id})}">Remove Student</a></td>
-
 			</tr>
-			
+			</tbody>	
 		</table>
 	</form>
-	<button class="button buttonAdd" onclick="window.location.href='/inputCourse';">Add</button>
+	
+	<a href="../inputCourse" class = "addButton">Add Course</a>
 
 	<script>
+	
+	
+	const getCellValue = (tr, idx) => tr.children[idx].innerText || tr.children[idx].textContent;
+
+	const comparer = (idx, asc) => (a, b) => ((v1, v2) => 
+	    v1 !== '' && v2 !== '' && !isNaN(v1) && !isNaN(v2) ? v1 - v2 : v1.toString().localeCompare(v2)
+	    )(getCellValue(asc ? a : b, idx), getCellValue(asc ? b : a, idx));
+
+
+	document.querySelectorAll('th').forEach(th => th.addEventListener('click', (() => {
+  const table = th.closest('table');
+  const tbody = table.querySelector('tbody');
+  Array.from(tbody.querySelectorAll('tr'))
+    .sort(comparer(Array.from(th.parentNode.children).indexOf(th), this.asc = !this.asc))
+    .forEach(tr => tbody.appendChild(tr) );
+	})));
+	
+	
+	
 
 var menu = document.getElementById("subject");
 menu.addEventListener("change", selectedSearch);
