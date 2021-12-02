@@ -62,6 +62,16 @@ public class WebController {
 		return viewAllCourses(model);
 	}//end deleteCourse
 	
+	//remove students function
+	@GetMapping("/remove/{id}")
+		
+	public String removeStudent(@PathVariable("id") long id, Model model) {
+		Course c = repo.findById(id).orElse(null);
+		c.removeStudent();
+		repo.save(c);
+		return viewAllCourses(model);
+	}//end removeStudent
+	
 	//add course get mapping method
 	@GetMapping("/inputCourse")
 	

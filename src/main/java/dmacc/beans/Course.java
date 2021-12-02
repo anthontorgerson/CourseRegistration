@@ -2,6 +2,10 @@
  * @author alexanderpontier - ampontier1
  * CIS175 - Spring 2021
  * Nov 17, 2021
+ * 
+ * @author becca deuser
+ * Edited to add students enrolled
+ * Dec 2, 2021
  */
 package dmacc.beans;
 
@@ -24,6 +28,7 @@ public class Course {
 	private String courseName;
 	@Autowired
 	private Teacher teacher;
+	private int studentsEnrolled;
 	//private final int COURSEMAX = 15;
 	//private final int COURSEMIN = 5;
 	//private int courseApplied;
@@ -52,6 +57,13 @@ public class Course {
 		this.courseName = courseName;
 	}
 
+
+	public Course(String courseId, String courseName, Teacher teacher, int studentsEnrolled) {
+		this.courseId = courseId;
+		this.courseName = courseName;
+		this.teacher = teacher;
+		this.studentsEnrolled = studentsEnrolled;
+	}
 
 	public long getId() {
 		return id;
@@ -92,6 +104,18 @@ public class Course {
 		this.teacher = teacher;
 	}
 
+
+	public int getStudentsEnrolled() {
+		return studentsEnrolled;
+	}
+
+	public void setStudentsEnrolled(int studentsEnrolled) {
+		this.studentsEnrolled = studentsEnrolled;
+	}
+	
+	public void removeStudent() {
+		this.studentsEnrolled--;
+	}
 
 	@Override
 	public String toString() {
