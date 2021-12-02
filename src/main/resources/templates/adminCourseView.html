@@ -61,6 +61,7 @@ tr:nth-child(odd) {
 				<th>ID</th>
 				<th>CRN</th>
 				<th>Course Title</th>
+				<th>Students Enrolled</th>
 				<!-- <th>Students Enrolled</th> -->
 				<th>Teacher</th>
 				<th>Email</th>
@@ -69,6 +70,7 @@ tr:nth-child(odd) {
 				<td th:text="${currentCourses.id}" />
 				<td th:text="${currentCourses.courseId}" />
 				<td th:text="${currentCourses.courseName}" />
+				<td th:text="${currentCourses.studentsEnrolled}" />
 				<!--   <td th:text="${currentCourses.courseApplied}" />-->
 				<td th:text="${currentCourses.teacher.lastName}" />
 				<td th:text="${currentCourses.teacher.email}" />
@@ -77,7 +79,7 @@ tr:nth-child(odd) {
 				<td><a th:href="@{/edit/{id}(id=${currentCourses.id})}">Edit</a></td><!-- WORKS redirects to /edit/id# -->
 				 <!--<td><button class="button buttonDelete" th:action="@{/delete/{id}(id=${currentCourses.id})}">Delete</button></td><!-- Stylized button, needs work -->			
               	<td><a th:href="@{/delete/{id}(id=${currentCourses.id})}">Delete</a></td><!-- WORKS redirects to /delete/id# -->
-              
+              	<td><a th:href="@{/remove/{id}(id=${currentCourses.id})}">Remove Student</a></td>
 
 			</tr>
 			
