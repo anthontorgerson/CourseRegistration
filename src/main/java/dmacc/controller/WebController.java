@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import dmacc.beans.Course;
-import dmacc.beans.Movie;
+import dmacc.beans.Student;
 import dmacc.repository.CourseRegistrationRepository;
 
 @Controller
@@ -30,6 +30,15 @@ public class WebController {
 		}
 		model.addAttribute("courses", repo.findAll());
 		return "adminCourseView";
+	}
+	
+	@GetMapping({"/studentView"})
+	public String studentViewCourses(Model model) {
+		if(repo.findAll().isEmpty()) {
+			return addNewCourse(model);
+		}
+		model.addAttribute("courses", repo.findAll());
+		return "studentCourseView";
 	}
 
 	@GetMapping("/edit/{id}")
@@ -50,7 +59,6 @@ public class WebController {
 	public String deleteCourse(@PathVariable("id") long id, Model model) {
 		Course c = repo.findById(id).orElse(null);
 		repo.delete(c);
-		//TODO: viewAllCourses method will need to be created
 		return viewAllCourses(model);
 	}//end deleteCourse
 	
@@ -69,14 +77,13 @@ public class WebController {
 	
 	public String addNewCourse(@ModelAttribute Course c, Model model) {
 		repo.save(c);
-		//TODO: viewAllCourses method will need to be created
 		return viewAllCourses(model);
 	}//end addNewCourse
 	
 	// add student to course method
 	@GetMapping("/inputStudentToCourse")
 	public String addStudentToCourse(Model model) {
-		Student s = new Student(); //TODO: student class needs added
+		Student s = new Student();
 		Course c = new Course();
 		model.addAttribute("newStudent", s);
 		model.addAttribute("newCourse", c);
@@ -85,9 +92,9 @@ public class WebController {
 	
 	@PostMapping("/inputStudentToCourse")
 	public String addStudentToCourse(@ModelAttribute Student s, Course c, Model model) {
-		repo.save(s);
+		//TODO: This receives an error repo.save(s);
 		repo.save(c);
-		return viewAllCourses(model); //TODO: viewAllCourses method needs added
+		return viewAllCourses(model);
 	}
 	
 	/*
