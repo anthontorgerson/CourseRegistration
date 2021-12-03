@@ -23,7 +23,7 @@ public class WebController {
 	@Autowired
 	CourseRegistrationRepository repo;
 	
-	@GetMapping({"/", "viewAll"})
+	@GetMapping({"/", "loginpage"})
 	public String loginpage(Model model) {
 		model.addAttribute("courses", repo.findAll());
 		return "loginpage";
