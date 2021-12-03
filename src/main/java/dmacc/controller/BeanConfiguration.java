@@ -18,14 +18,12 @@ public class BeanConfiguration {
 	@Bean
 	public Course course() {
 		Course bean = new Course();
-		bean.setCourseId("12345");
-		bean.setCourseName("Python");
 		return bean;
 	}
 	
 	@Bean
 	public Teacher teacher() {
-		Teacher bean = new Teacher("Smith", "jsmith@dmacc.edu");
+		Teacher bean = new Teacher();
 		return bean;
 	}
 
