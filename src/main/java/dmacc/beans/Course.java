@@ -113,6 +113,10 @@ public class Course {
 		this.studentsEnrolled = studentsEnrolled;
 	}
 	
+	public void addStudent() {
+		this.studentsEnrolled++;
+	}
+	
 	public void removeStudent() {
 		this.studentsEnrolled--;
 	}

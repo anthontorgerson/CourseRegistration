@@ -106,6 +106,7 @@ a.deleteButton{
 				
 				<td><a th:href="@{/edit/{id}(id=${currentCourses.id})}" class = "editButton">Edit</a></td>					
               	<td><a th:href="@{/delete/{id}(id=${currentCourses.id})}" class = "deleteButton">Delete</a></td>
+              	<td><a th:href="@{/add/{id}(id=${currentCourses.id})}">Add Student</a></td>
               	<td><a th:href="@{/remove/{id}(id=${currentCourses.id})}">Remove Student</a></td>
 			</tr>
 			</tbody>	
