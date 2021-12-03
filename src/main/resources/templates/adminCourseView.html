@@ -68,6 +68,34 @@ a.deleteButton{
    vertical-align: middle;
 }
 
+a.addStudentButton{
+    -webkit-appearance: button;
+    -moz-appearance: button;
+    appearance: button;
+    text-decoration: none;
+   background: lightgreen;
+   padding: 3px 7px;
+   border-radius: 20px;
+   color: white;
+   font-size: 12px;
+   font-family: Helvetica, Arial, Sans-Serif;
+   vertical-align: middle;
+}
+
+a.deleteStudentButton{
+    -webkit-appearance: button;
+    -moz-appearance: button;
+    appearance: button;
+    text-decoration: none;
+   background: salmon;
+   padding: 3px 7px;
+   border-radius: 20px;
+   color: white;
+   font-size: 12px;
+   font-family: Helvetica, Arial, Sans-Serif;
+   vertical-align: middle;
+}
+
 
 
 
@@ -106,14 +134,15 @@ a.deleteButton{
 				
 				<td><a th:href="@{/edit/{id}(id=${currentCourses.id})}" class = "editButton">Edit</a></td>					
               	<td><a th:href="@{/delete/{id}(id=${currentCourses.id})}" class = "deleteButton">Delete</a></td>
-              	<td><a th:href="@{/add/{id}(id=${currentCourses.id})}">Add Student</a></td>
-              	<td><a th:href="@{/remove/{id}(id=${currentCourses.id})}">Remove Student</a></td>
+              	<td><a th:href="@{/add/{id}(id=${currentCourses.id})}" class = "addStudentButton">Add Student</a></td>
+              	<td><a th:href="@{/remove/{id}(id=${currentCourses.id})}" class = "deleteStudentButton">Remove Student</a></td>
 			</tr>
 			</tbody>	
 		</table>
 	</form>
 	
 	<a href="../inputCourse" class = "addButton">Add Course</a>
+	<a href="/loginpage" >Return To Login</a>
 
 	<script>
 	
