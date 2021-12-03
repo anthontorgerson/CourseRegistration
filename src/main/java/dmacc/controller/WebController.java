@@ -24,6 +24,12 @@ public class WebController {
 	CourseRegistrationRepository repo;
 	
 	@GetMapping({"/", "viewAll"})
+	public String loginpage(Model model) {
+		model.addAttribute("courses", repo.findAll());
+		return "loginpage";
+	}
+	
+	@GetMapping({"/adminCourseView"})
 	public String viewAllCourses(Model model) {
 		if(repo.findAll().isEmpty()) {
 			return addNewCourse(model);
@@ -32,7 +38,16 @@ public class WebController {
 		return "adminCourseView";
 	}
 	
-	@GetMapping({"/studentView"})
+	@GetMapping({"/teacherCourseView"})
+	public String teacherViewCourses(Model model) {
+		if(repo.findAll().isEmpty()) {
+			return addNewCourse(model);
+		}
+		model.addAttribute("courses", repo.findAll());
+		return "teacherCourseView";
+	}
+	
+	@GetMapping({"/studentCourseView"})
 	public String studentViewCourses(Model model) {
 		if(repo.findAll().isEmpty()) {
 			return addNewCourse(model);
