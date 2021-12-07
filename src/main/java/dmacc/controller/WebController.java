@@ -47,6 +47,15 @@ public class WebController {
 		return "teacherCourseView";
 	}
 	
+	@GetMapping({"/teacherManageRosterView"})
+	public String manageRosterTeacher(Model model) {
+		if(repo.findAll().isEmpty()) {
+			return addNewCourse(model);
+		}
+		model.addAttribute("courses", repo.findAll());
+		return "teacherManageRosterView";
+	}
+	
 	@GetMapping({"/studentCourseView"})
 	public String studentViewCourses(Model model) {
 		if(repo.findAll().isEmpty()) {
