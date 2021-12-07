@@ -4,6 +4,96 @@
 <meta charset="UTF-8">
 <title>View All Courses - Teacher</title>
 </head>
+<style>
+th {
+	cursor: pointer;
+	background-color: #87CEEB;
+	color: black;
+	font-weight: bold;
+	font-size: 110%;
+	font-style: normal;
+	text-align: center;
+	vertical-align: center;
+}
+
+tr:nth-child(odd) {
+	background-color: #f2f2f2;
+}
+
+.tableContents {
+	text-align: left;
+}
+
+a.addButton{
+    -webkit-appearance: button;
+    -moz-appearance: button;
+    appearance: button;
+    text-decoration: none;
+   background: green;
+   padding: 3px 7px;
+   border-radius: 20px;
+   color: white;
+   font-size: 12px;
+   font-family: Helvetica, Arial, Sans-Serif;
+   vertical-align: middle;
+}
+
+a.editButton{
+    -webkit-appearance: button;
+    -moz-appearance: button;
+    appearance: button;
+    text-decoration: none;
+   background: khaki;
+   padding: 3px 7px;
+   border-radius: 20px;
+   color: white;
+   font-size: 12px;
+   font-family: Helvetica, Arial, Sans-Serif;
+   vertical-align: middle;
+}
+
+a.deleteButton{
+    -webkit-appearance: button;
+    -moz-appearance: button;
+    appearance: button;
+    text-decoration: none;
+   background: red;
+   padding: 3px 7px;
+   border-radius: 20px;
+   color: white;
+   font-size: 12px;
+   font-family: Helvetica, Arial, Sans-Serif;
+   vertical-align: middle;
+}
+
+a.addStudentButton{
+    -webkit-appearance: button;
+    -moz-appearance: button;
+    appearance: button;
+    text-decoration: none;
+   background: lightgreen;
+   padding: 3px 7px;
+   border-radius: 20px;
+   color: white;
+   font-size: 12px;
+   font-family: Helvetica, Arial, Sans-Serif;
+   vertical-align: middle;
+}
+
+a.deleteStudentButton{
+    -webkit-appearance: button;
+    -moz-appearance: button;
+    appearance: button;
+    text-decoration: none;
+   background: salmon;
+   padding: 3px 7px;
+   border-radius: 20px;
+   color: white;
+   font-size: 12px;
+   font-family: Helvetica, Arial, Sans-Serif;
+   vertical-align: middle;
+}
+</style>
 <body>
 	<select id="subject">
 		<option value="" disabled selected>Select Search Parameter</option>
